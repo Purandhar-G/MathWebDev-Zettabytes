@@ -1,0 +1,142 @@
+---
+layout: default
+title: Trace of a Matrix
+---
+
+
+<style media="screen">
+
+</style>
+<script type="text/javascript">
+<!--java script code for creating interactive grids-->
+  function func() {
+    var n=document.getElementById('n').value;
+    n=parseInt(n);
+    var str="";
+    document.getElementById('ma').innerHTML="";
+    for(let i=0;i<n;i++)
+    {
+      str=str+"auto ";
+
+    }
+    const dStyle = document.querySelector('style');
+    dStyle.innerHTML = `.grid-container{display:grid;align:center;grid-template-columns: ${str};padding: 5px;width: 10px;}`;
+
+    for(let i=0;i<n*n;i++)
+    {
+      var div = document.createElement('div'); // is a node
+      div.setAttribute('class', 'grid-item');
+
+      div.innerHTML=`<input id="${i}"  type="text" size=1px  value="">`;
+
+  document.getElementById("ma").appendChild(div);
+
+    }
+
+
+  }
+
+
+</script>
+
+
+
+<script type="text/javascript">
+//java script code for taking the input from grids and applying logic.
+function fun() {
+
+  document.getElementById('man').innerHTML="";
+  var n=document.getElementById('n').value;
+  n=parseInt(n);
+  let str1=[];
+    //below two for loops gets the value from input grids and stores in str1
+  for (let i=0;i<n;i++)
+  {
+    let a=[]
+    for(let j=0;j<n;j++)
+    {
+  a.push(parseInt(document.getElementById(`${n*i+j}`).value));
+    }
+   str1.push(a);
+
+  }
+//  FINDING TRACE WITH THE CODE BELOW ::
+var TRACE = 0;
+for (var i =0;i<n;i++)
+{
+for(var j=0;j<n;j++)
+{
+    if(i==j)
+    {
+      TRACE+=str1[i][j];
+    }
+}
+}
+document.getElementById('a2').innerHTML="The TRACE of the matrix is : "+TRACE;
+// CREATING MATRIX TYPE TABLE FORMAT
+  for (let i=0;i<n;i++)
+  {
+    var tr = document.createElement('tr');
+  var string="";
+    for(let j=0;j<n;j++)
+    {
+      string=string+`<td class="mmm">${str1[i][j]}</td>`;
+      tr.innerHTML=string;
+
+
+    }
+    document.getElementById("man").appendChild(tr);
+
+  }
+   document.getElementById('a1').innerHTML="Given matrix is: ";
+
+}
+
+
+</script>
+
+
+     <div class="right">
+       <div class="main-heading">
+          <h2><strong> Trace of Matrix</strong></h2>
+       </div>
+       <div class="paragraph">
+         <h4><strong><u>Trace of a Matrix:</u></strong></h4>
+         <p>In a square matrix, the sum of elements of the principal diagonal is called the 'trace of a matrix'. We denote the trace of the matrix A by 'tr A'. </p>
+         Note: <br>
+         The trace exits only for <strong> Square Matrices.</strong> <br>
+         Example: <br>
+
+
+       </div>
+       <img src="https://concept-stories.s3.ap-south-1.amazonaws.com/test/Stories%20-%20Images_story_6212/image_2019-03-07%2020%3A21%3A21.550379%2B00%3A00" alt=""> <br>
+       <h4>Trace(A)=a+e+i</h4>
+
+
+
+
+
+  <h1>Enter the order of matrix</h1>
+  <div class="input">
+    <input id="n" type="text" oninput="func()"name="" value="">
+
+  </div>
+  <div id="ma"  class="grid-container">
+
+
+  </div>
+
+
+  <a class="submit"onclick="fun()"href="#footer" class="btn btn-primary">submit</a>
+  <div class="paragraph">
+    <br>
+    <h3 id="a1"></h3>
+    <table align="center" id="man" class="matrix">
+      <!--  formation of matrix   -->
+    </table>
+    <br>
+    <br>
+    <!-- TRACE value shows here    -->
+    <h4 id="a2"></h4>
+<br>
+  </div>

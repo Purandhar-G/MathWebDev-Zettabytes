@@ -1,0 +1,256 @@
+---
+layout: default
+title: Adjoint Matrix
+---
+
+<style>
+
+.grid-container {
+  display: grid;grid-template-columns: auto auto auto auto;background-color: ;padding: 5px;width: 10px;
+
+}
+.grid-item {
+
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+</style>
+
+<script type="text/javascript">
+  function func() {
+    var n=document.getElementById('n').value;
+    n=parseInt(n);
+    var str="";
+    document.getElementById('ma').innerHTML="";
+    for(let i=0;i<n;i++)
+    {
+      str=str+"auto ";
+
+    }
+    const dStyle = document.querySelector('style');
+    dStyle.innerHTML = `.grid-container{display:grid;align:center;grid-template-columns: ${str};padding: 5px;width: 10px;}`;
+
+    for(let i=0;i<n*n;i++)
+    {
+      var div = document.createElement('div'); // is a node
+      div.setAttribute('class', 'grid-item');
+
+      div.innerHTML=`<input id="${i}"  type="text" size=1px  value="">`;
+
+  document.getElementById("ma").appendChild(div);
+
+    }
+
+
+  }
+
+
+</script>
+
+
+
+<script type="text/javascript">
+function fun() {
+
+  document.getElementById('man2').innerHTML="";
+    document.getElementById('man1').innerHTML="";
+
+  var n=document.getElementById('n').value;
+  n=parseInt(n);
+  let str1=[];
+  for (let i=0;i<n;i++)
+  {
+    let a=[]
+    for(let j=0;j<n;j++)
+    {
+      a.push(parseInt(document.getElementById(`${n*i+j}`).value));
+    }
+   str1.push(a);
+
+  }
+  var res=math.inv(str1);
+  var adj=math.multiply(res,math.det(str1));
+  var cofac=math.transpose(adj);
+  for (let i=0;i<n;i++)
+  {
+  var tr = document.createElement('tr');
+  var string="";
+    for(let j=0;j<n;j++)
+    {
+      string=string+`<td class="mmm">${(cofac[i][j]).toFixed(2)}</td>`;
+      tr.innerHTML=string;
+
+
+    }
+    document.getElementById("man1").appendChild(tr);
+
+  }
+document.getElementById('a1').innerHTML="Cofactor of given Matrix is: ";
+
+
+
+  for (let i=0;i<n;i++)
+  {
+    var tr = document.createElement('tr');
+  var string="";
+    for(let j=0;j<n;j++)
+    {
+      string=string+`<td class="mmm">${(adj[i][j]).toFixed(2)}</td>`;
+      tr.innerHTML=string;
+
+
+    }
+    document.getElementById("man2").appendChild(tr);
+
+  }
+document.getElementById('a2').innerHTML="Adjoint of given Matrix is: ";
+
+
+
+  for (let i=0;i<n;i++)
+  {
+    var tr = document.createElement('tr');
+  var string="";
+    for(let j=0;j<n;j++)
+    {
+      string=string+`<td class="mmm">${(res[i][j]).toFixed(2)}</td>`;
+      tr.innerHTML=string;
+
+
+    }
+
+  }
+
+
+}
+
+
+</script>
+<style media="screen">
+
+
+.matrix {
+       position: relative;
+   }
+   .matrix:before, .matrix:after {
+       content: "";
+       position: absolute;
+       top: 0;
+       border: 4px solid black;
+       width: 6px;
+       height: 100%;
+   }
+   .matrix:before {
+       left: -6px;
+       border-right: 0;
+   }
+   .matrix:after {
+       right: -6px;
+       border-left: 0;
+   }
+  .mmm
+   {
+
+     padding:23px;
+     font-weight:bold;
+
+
+   }
+   h3,h1,P,STRONG{
+
+     color: black;
+margin: auto;
+text-shadow: 5px 5px 4px #blue;
+
+
+   }
+   td{
+     color:black;
+
+   }
+
+   .grid-item {
+
+     border: 1px solid  black;
+     padding: 5px;
+     font-size: 20px;
+     align:center;
+
+
+   }
+   .grid-container {
+     padding: 5px;width: 10px;
+     margin: 5px 400px;
+
+
+   }
+   img{
+     background-color: white;
+     opacity: inherit;
+   }
+
+
+
+</style>
+ <div class="right">
+  <div class="paragraph">
+    <h4>
+      <div class="main-heading">
+
+
+       <h2 style="color:white;" ><strong>Adjoint Matrices</strong></h2>
+      </div>
+
+  <p>The inverse of matrix is another matrix, which on multiplication with the given matrix gives the multiplicative identity. For a matrix A, its inverse is A<sup>-1</sup>, and A.A<sup>-1</sup> = A<sup>-1</sup>·A = I, where I is the identity matrix. The matrix whose determinant is non-zero and for which the inverse matrix can be calculated is called an invertible matrix.</p>
+  <p>The inverse matrix formula for a matrix A is given as,
+
+  A-1 = adj(A)/|A|; |A| ≠ 0
+  where A is a square matrix.<br>
+  Note: For inverse of a matrix to exist.<br>
+  The given matrix should be a square matrix.<br>
+  The determinant of the matrix should not be equal to zero.<br>
+  Example:
+  </div>
+
+<img src="https://mathworld.wolfram.com/images/equations/MatrixInverse/NumberedEquation3.svg" width="300" height="300">
+<p>The inverse of the matrix A is
+</p>
+<img src="https://mathworld.wolfram.com/images/equations/MatrixInverse/NumberedEquation4.svg" width="400" height="300">
+
+
+<h1>Enter the order of matrix</h1>
+<div class="input">
+  <input id="n"  type="text" oninput="func()"name="" value="">
+
+</div>
+
+<div id="ma"  class="grid-container">
+
+
+</div>
+
+
+<a class="submit" onclick="fun()"href="#footer">submit</a>
+
+<div class="paragraph">
+
+
+  <h4 id="a1"></h4>
+  <table align="center" id="man1" class="matrix">
+
+  </table>
+  <h4 id="a2"></h4>
+  <table align="center" id="man2" class="matrix">
+
+  </table>
+
+
+
+</div>
+
+<footer id="footer"></footer>
+
+</div>

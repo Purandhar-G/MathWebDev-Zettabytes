@@ -1,0 +1,100 @@
+---
+layout: default
+title: Maxima and Minima of a Function
+---
+
+
+ <!-- assuming you've saved the file in the root -->
+<script type="text/javascript">
+  function func()
+  {
+
+var place=document.getElementById('1').value;
+document.getElementById("ma").innerHTML="";
+
+var a = nerdamer(`diff(${place},x)`);
+var sol = nerdamer.solveEquations(a.toString(),'x');
+var p=sol.toString();
+let arr = p.split(",");
+var b = nerdamer(`diff(${place},x,2)`);
+let arrayss = new Array();
+let len_E =0;
+for (let i=0;i<arr.length;i++)
+{
+if (arr[i].includes("i")==false)
+{
+var j = nerdamer(b.toString()).evaluate({x:parseInt(arr[i])});
+
+var k = nerdamer(place.toString()).evaluate({x:parseInt(arr[i])});
+
+if (j>0)
+{
+  var div_1 = document.createElement('div');
+    div_1.innerHTML=`the function has local minima at ${arr[i]} , ${k}`+"<br>";
+
+    document.getElementById("ma").appendChild(div_1);
+   len_E+=1;
+}
+else if (j<0)
+ {
+   var div_1 = document.createElement('div');
+     div_1.innerHTML=`the function has local maxima at ${arr[i]} , ${k}`+"<br>";
+     document.getElementById("ma").appendChild(div_1);
+ len_E+=1;
+}
+if (len_E == 0 ){
+  var div_3 = document.createElement('div');
+   div_3.innerHTML="the function has neither Maxima nor minima";
+   document.getElementById("ma").appendChild(div_3);
+   console.log("asjfednfkaSFKNKFS");
+}
+}
+}
+var abss = nerdamer.expand(place);
+document.getElementById("q").innerHTML="The function that you entered is: "+place;
+document.getElementById("w").innerHTML='1<sup>st</sup> Derivative of the function is:<br><br>f\'(x) = '+a;
+document.getElementById("e").innerHTML="On equating f'(x) to 0 <br><br>"+a+" = 0<br><br>"+"The critical points are : <br><br>x = "+p;
+//document.getElementById('ik').innerHTML='Now, <br> <span class="tab"></span>f(x) = '+abss.toString();
+
+
+}
+
+
+</script>
+
+             <div class="right">
+                <div class="main-heading">
+    <h2><strong><u>Maxima amd Minima of a Function:</u></strong></h2></div>
+    <div class="paragraph">
+   <p>Maxima and minima of a function are the largest and smallest value of the function respectively either within a given range or on the entire domain. Collectively they are also known as extrema of the function. The maxima and minima are the respective plurals of maximum and minimum of a function.</p>
+
+   <strong>Note:</strong>
+    If f'(x) changes sign from positive to negative as x increases through point c, then c is the point of local maxima. And the f(c) is the maximum value.If f'(x) changes sign from negative to positive as x increases through point c, then c is the point of local minima. <br></div>
+    <strong>Example</strong>: <br>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-YSQiDnyfSZxicTCFC1Jivvr6DXwey1sERJtDxqIp1G-DCFEhVB6w-cWoSID9PrbTrfY&usqp=CAU" width="400" Height="200"alt="">
+  <br>
+
+      <h3>Enter the function in input section :</h3>
+      <br>
+      <div class="input">
+      <input id="1" type="text" name="" placeholder="Ex: x^3+2*x" >
+      </div>
+<br><br>
+      <a onclick="func()" href="#footer" class="submit">Submit</a>
+      <br>
+      <br><br>
+      <h4>OUTPUT SECTION:</h4>
+
+      <div class="paragraph">
+        <br>
+        <h5 id="q"></h5>
+        <h5 id="ik" ></h5><br>
+        <h5 id="w"> </h5><br>
+          <h5 id="e"> </h5><br>
+          <h5 id="ma"> </h5><br>
+      </div>
+
+
+    </div>
+
+    </div>

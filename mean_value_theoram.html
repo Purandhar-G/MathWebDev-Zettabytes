@@ -1,0 +1,79 @@
+---
+layout: default
+title: Mean Value Theoram
+---
+<script src="all.min.js"></script>  <!-- assuming you've saved the file in the root -->
+<script type="text/javascript">
+  function func(){
+
+var place=document.getElementById('1').value;
+var x=document.getElementById('2').value;
+var l=x.replace("[","");
+var q=l.replace("]","");
+var x=q.split(",");
+
+var f_der = nerdamer(`diff(${place},x)`);
+// var e = nerdamer(a.toString(),{x:parseInt(x)}).evaluate();
+// console.log(e.text());
+var a=eval(x[0]);
+var b=eval(x[1]);
+console.log(a,b);
+var f_a = (nerdamer(place,{x:a}).evaluate()).toString();
+var f_b = (nerdamer(place,{x:b}).evaluate()).toString();
+var val=(f_b-f_a)/(b-a);
+var final_exp=f_der+`-${val}`;
+
+var roots = (nerdamer(`roots(${final_exp})`)).toString();
+var roots=roots.replace("[","");
+var roots=roots.replace("]","");
+var roots=roots.split(",");
+str=""
+for (let i=0;i<roots.length;i++)
+{
+  roots[i]=eval(roots[i]).toFixed(1);
+  str=str+" "+roots[i];
+}
+console.log(roots);
+document.getElementById("a").innerHTML="your function is: "+place;
+document.getElementById("b").innerHTML="After differentiating the fucntion we get "+f_der.toString();
+document.getElementById("c").innerHTML= "we know that <strong>[f'(x) - [f(b)-f(a)]/b-a]</strong> should be equal to zero to find the values of c <br><br>"+`value of <strong>[f(b)-f(a)]/b-a</strong> = ${val} <br><br> `+final_exp+"=0";
+document.getElementById("d").innerHTML= "after solving we get: possible values of c for which they satisfy the mean value theoram"+str;
+
+
+
+  }
+
+
+</script>
+
+             <div class="right">
+    <div class="main-heading">
+    <h2><strong>Mean Value Theorem</strong></h2></div>
+    <div class="paragraph">
+    <p> The theorem states that if f is a continuous function on the closed interval [a,b] and differentiable on the open interval (a,b), then there exists a point c in (a,b) such that the tangent at c is parallel to the secant line through the endpoints (a,f(a))and(b,f(b)), that is,</p></div>
+    <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/b4e68eccc69d29a2a10d669fdd0a7f038417277b" alt="">
+     <br>
+
+
+    <h3>Enter the function in input section </h3>
+    <br>
+    <div class="input">
+    <input id="1" type="text" placeholder="Ex:x^5" >
+    <br></div>
+      <h3>Enter the value of upper limit and lower limit of interval in the input box as [a,b] </h3>
+<br>
+<div class="input-2">
+        <input id="2" type="text" placeholder="Ex:[1,2]" >
+<br></div><br><br>
+<a onclick="func()" href="#footer" class="submit">Submit</a>
+<br>
+<br>
+<h3>OUTPUT SECTION</h3>
+    <div class="paragraph">
+      <br>
+    <h5 id="a"></h5><br>
+    <h5 id="b"></h5><br>
+    <h5 id="c"></h5><br>
+    <h5 id="d"></h5><br>
+
+    </div>

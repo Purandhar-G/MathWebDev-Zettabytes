@@ -1,0 +1,77 @@
+---
+layout: default
+title: Addition
+---
+
+<script type="text/javascript">
+  function func(){
+
+var place=document.getElementById('1').value;
+var x=document.getElementById('2').value;
+var a = nerdamer(`diff(${place},x)`);
+var e = nerdamer(a.toString(),{x:parseInt(x)}).evaluate();
+console.log(e.text());
+
+
+document.getElementById("a").innerHTML="Your function is: "+`<span style="color:black;font-style: bold;">${place}</span>`;
+document.getElementById("b").innerHTML="After differentiating the function we get:<br>"+`<span style="color:black;font-style: bold;">[${place}]' = ${a.toString()}</span>`;
+document.getElementById("c").innerHTML= `Now substituing the value of x=${x} <br>`+`<span style="color:blaxk;font-style: bold;">${a.toString().replace(/x/g, x)}</span>`;
+document.getElementById("d").innerHTML= "After solving we get: "+`<span style="color:black;font-style: bold;">${(e.text()).slice(0,5)}</span>`;
+
+
+
+
+  }
+
+
+
+
+</script>
+
+
+           <div class="right">
+    <div class="main-heading">
+
+
+      <h2 ><strong>Derivative of a function</strong></h2>
+     </div>
+    <div class="paragraph">
+    <p> The derivative of a function is defined as the instantaneous rate of change of a function at a specific point. <br>The derivative gives the exact slope along the curve at a specific point.<br>
+      In this problem we are going to evaluate the value of first derivative of a given function</p></div>
+    <strong>Example:</strong> <br>
+    <img src="https://miro.medium.com/max/2776/1*1wUD_t4Ufp8Ef9NQzcydWQ.png" width="300" height="200" alt=""> <br>
+     <div class="paragraph-1">
+    <strong>consider f(x)=2x**3+2 <br>
+    Then derivative of f(x) is, <br></p></strong></div>
+    <img src="https://study.com/cimages/multimages/16/firstderiv2.png" alt="">
+   <br>
+   <br>
+    <h5 style="font-weight: bold;">Enter the function in input section </h5>
+    <br>
+   <div class="input">
+    <input id="1" type="text" name="" placeholder="Ex:x^2+sin(x)">
+    <br></div><br>
+      <h5 style="font-weight:bold;">Enter the value of x  </h5>
+      <br>
+      <div class="input-2">
+        <input id="2" type="text" name="" placeholder="Ex:4" >
+<br>
+      </div>
+      <br>
+      <a onclick="func()" href="#footer" class="submit">Submit</a>
+<br>
+<br>
+<br>
+<h4>OUTPUT SECTION:</h4>
+  <div class="paragraph">
+    <br>
+    <h5 id="a"></h5>
+    <br>
+    <h5 id="b"></h5>
+    <br>
+    <h5 id="c"></h5>
+    <br>
+    <h5 id="d"></h5>
+    <br>
+
+  </div>

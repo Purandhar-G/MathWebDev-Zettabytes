@@ -1,0 +1,100 @@
+---
+layout: default
+title: Dot
+---
+
+
+<script src="all.min.js"></script>  <!-- assuming you've saved the file in the root -->
+<script type="text/javascript">
+  function func(){
+
+var place1=document.getElementById('1').value;
+var place2=document.getElementById('2').value;
+nerdamer.setVar('v1', `vector(${place1})`);
+x = nerdamer('v1');
+//console.log(x.toString())
+nerdamer.setVar('v2', `vector(${place2})`);
+y = nerdamer('v2');
+var step="";
+for (let i=0;i<3;i++)
+{
+  if(i==0)
+  {
+    step=step+`${place1[0]}`+"."+`${place2[0]}`+"+";
+
+  }
+  if(i==1)
+  {
+    step=step+`${place1[2]}`+"."+`${place2[2]}`+"+";
+
+  }
+  if(i==2)
+  {
+    step=step+`${place1[4]}`+"."+`${place2[4]}`;
+
+  }
+
+
+}
+//console.log(y.toString());
+// var x = nerdamer('dot([1,2,3], [4,5,6])').evaluate();
+// console.log(x.toString());
+var a = nerdamer(`dot(${x.toString()}, ${y.toString()})`).evaluate();
+console.log(a.toString());
+
+
+
+
+
+
+
+document.getElementById("a").innerHTML="Coefficiets that you entered for vector 1: "+place1;
+document.getElementById("b").innerHTML="Coefficiets that you entered for vector 2:"+place2;
+document.getElementById("b1").innerHTML="Solving dot product <br>"+step;
+document.getElementById("c").innerHTML= "After dot product we get answer= "+a.toString();
+
+
+
+
+  }
+
+
+
+
+</script>
+           <div class="right">
+    <div class="main-heading">
+       <h2><strong> Dot Product</strong></h2>
+    </div>
+    <div class="paragraph">
+       <p>
+    The dot product of two vectors is the sum of the products of their corresponding components. It is the product of their magnitudes multiplied by the cosine of the angle between them. A vector's dot product with itself is the square of its magnitude.</p></div>
+    Example:<br>
+       <img src="dot.jpeg" width="500px" alt="">
+    <h3>Enter the i,j,k coefficients of vector 1 </h3>
+    <div class="input">
+    <input id="1" type="text" placeholder="i,j,k" >
+    </div><br>
+      <h3>Enter the i,j,k coefficients of vector 2 </h3>
+     <div class="input-2">
+        <input id="2" type="text" placeholder="i,j,k">
+        <br></div><br>
+        <a onclick="func()" href="#footer" class="submit">Submit</a>
+        <br>
+
+
+    <br>
+    <h4>OUTPUT SECTION:</h4>
+    <div class="paragraph">
+      <br>
+    <h5 id="a"></h5><br>
+    <h5 id="b"></h5><br>
+    <h5 id="b1"></h5><br>
+    <h5 id="c"></h5><br>
+
+    </div>
+
+
+
+</div>
+</div>

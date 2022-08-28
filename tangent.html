@@ -1,0 +1,63 @@
+---
+layout: default
+title: Tangent Equation
+---
+    <script type="text/javascript">
+      function func()
+      {
+        var fun = document.getElementById("proper").value;
+        document.getElementById('y_value').innerHTML="The given function is  "+ fun.toString()+"<br><br>"+"On differentiating the Function we get,";
+
+        var k = nerdamer(`diff(${fun},x)`);
+        document.getElementById('1ST_diff').innerHTML="f'(x) = "+ k.toString()+"<br><br>"+"The tangent equation is :-";
+        var x_value = document.getElementById('x_val').value;
+        var m = nerdamer(k.toString()).evaluate({x:parseInt(x_value)});
+        m=parseInt(m);
+        let normal_slope = (-1/m).toFixed(2);
+        var y = nerdamer(fun.toString()).evaluate({x:parseInt(x_value)});
+        console.log(m.toString());
+        document.getElementById('--ans--').innerHTML = "y-"+y.toString()+" = "+m.toString()+ "( x"+"-"+x_value.toString()+")";
+        document.getElementById('final_ans').innerHTML = " y  = "+m.toString()+"*x"+" - "+(parseInt(m*x_value-y)).toString();//+"-"+y.toString();
+      
+}
+
+    </script>
+
+             <div class="right">
+    <div class="main-heading">
+        <h2><strong>Tangent of a fucntion</strong></h2>
+    </div>
+    <div class="paragraph">
+        <p> The tangent line to a curve at a point is a straight line that best approximates (or “clings to”) the curve near that point. It may be considered the limiting position of straight lines passing through the given point and a nearby point of the curve as the second point approaches the first. </p>
+    </div>
+    <img src="https://i.stack.imgur.com/sQ3WN.png" alt="">
+    <br>
+
+          <b>Enter the Function here </b> : <br>
+          <div class="input">
+            <input type="text" id="proper"   placeholder="x^3+2*x"><br></div><br>
+          <b>  Enter the x_value at which Tangent required : </b>
+          <br><div class="input-2">
+            <input placeholder="x_value"type="number" id="x_val" name="" value="">
+          </div><br>
+          <a onclick="func()" href="#footer" class="submit">Submit</a>
+<br><br>
+<h4>OUTPUT SECTION:</h4>
+
+          <div class="paragraph">
+
+            <div class="paragraph">
+              <br>
+            <h4 id="y_value"></h4>
+            <br>
+            <h4 id="1ST_diff"></h4>
+            <br>
+            <h4 id="--ans--"></h4>
+            <br>
+           <h4 id="final_ans"></h4><br>
+          </div>
+
+            </div>
+    </div>
+    </div>
+</div>

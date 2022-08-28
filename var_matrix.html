@@ -1,0 +1,164 @@
+---
+layout: default
+title: Variable Matrix and Singularity
+---
+
+<style media="screen">
+
+</style>
+
+<script type="text/javascript">
+<!--java script code for creating interactive grids-->
+  function func() {
+    var n=document.getElementById('n').value;
+    n=parseInt(n);
+    var str="";
+    document.getElementById('ma').innerHTML="";
+    for(let i=0;i<n;i++)
+    {
+      str=str+"auto ";
+
+    }
+    const dStyle = document.querySelector('style');
+    dStyle.innerHTML = `.grid-container{display:grid;align:center;grid-template-columns: ${str};padding: 5px;width: 10px;}`;
+
+    for(let i=0;i<n*n;i++)
+    {
+      var div = document.createElement('div'); // is a node
+      div.setAttribute('class', 'grid-item');
+
+      div.innerHTML=`<input id="${i}"  type="text" size=1px  value="">`;
+
+  document.getElementById("ma").appendChild(div);
+
+    }
+
+
+  }
+
+
+</script>
+
+
+
+<script type="text/javascript">
+//java script code for taking the input from grids and applying logic.
+function fun() {
+
+  document.getElementById('man').innerHTML="";
+  var n=document.getElementById('n').value;
+  n=parseInt(n);
+  let str1=[];
+    //below two for loops gets the value from input grids and stores in str1
+  for (let i=0;i<n;i++)
+  {
+    let a=[]
+    for(let j=0;j<n;j++)
+    {
+  a.push(document.getElementById(`${n*i+j}`).value);
+    }
+   str1.push(a);
+
+  }
+  var fop = "";
+  for(let f = 0;f<n;f++){
+    fop = fop+"["+str1[f]+"]"
+    if (f!=n-1){fop = fop + ','}
+  }
+  deb = 'matrix('+fop+")"
+//  console.log(deb.toString()+"sfdkuhdsfhhf");
+  nerdamer.setVar('M',deb );
+  x = nerdamer('determinant(M)');
+  //console.log(x.toString());
+  var final_singular_val = nerdamer(`solve(${x.toString()},x)`);
+//console.log(final_singular_val.toString());
+// //  FINDING TRACE WITH THE CODE BELOW ::
+// var TRACE = 0;
+// for (var i =0;i<n;i++)
+// {
+// for(var j=0;j<n;j++)
+// {
+//     if(i==j)
+//     {
+//       TRACE+=str1[i][j];
+//     }
+// }
+// }
+console.log(final_singular_val);
+var string=""
+for (let i=0;i<final_singular_val.toString().length;i++)
+{
+  var b=final_singular_val.toString()[i];
+  if (b!="]" && b!="]" && b!=","){
+    console.log(b);
+  }
+
+}
+document.getElementById('a2').innerHTML="The determinant equation of matrix is: "+x.toString()+"<br><br>"+"Matrix becomes singular when determinant is zero "+"<br><br>"+"Therefore,values at which the matrix become singular is:"+"<br><br>"+x.toString()+"=0"+"<br><br>"+"Values are:"+final_singular_val.toString();
+// CREATING MATRIX TYPE TABLE FORMAT
+  for (let i=0;i<n;i++)
+  {
+    var tr = document.createElement('tr');
+  var string="";
+    for(let j=0;j<n;j++)
+    {
+      string=string+`<td class="mmm">${str1[i][j]}</td>`;
+      tr.innerHTML=string;
+
+
+    }
+    document.getElementById("man").appendChild(tr);
+
+  }
+   document.getElementById('a1').innerHTML="Given matrix is: ";
+
+}
+
+
+</script>
+
+
+
+
+  <div class="right">
+ <div class="main-heading">
+ <h2><strong>Variable Matrix and Singularity</strong></h2></div>
+ <div class="paragraph">
+   <p>A matrix is said to be variable if it contains the elements like x,x^2 or 2*x.</p>
+   <p>This variable matrix can become singular for some specific values of x.</p>
+   <p>In this problem we are going to find out that x values for which matrix becomes Singular.</p>
+ </div>
+ <h5>Example of variable Matrix:</h5>
+<img src="varMat.jpeg" alt="">
+<br><br>
+ <h3>Enter the order of matrix</h3>
+<br>
+ <div class="input">
+   <input id="n" type="text" oninput="func()">
+
+ </div>
+
+ <div id="ma"  class="grid-container">
+
+
+ </div>
+
+<br><br>
+ <a class="submit" onclick="fun()" href="#footer" class="btn btn-primary">submit</a>
+ <!--  given matrix takes the id = a1 to show on the web page    -->
+<br><br>
+ <h3>OUTPUT SECTION</h3>
+ <div class="paragraph">
+
+   <br>
+    <h3 id="a1"></h3>
+    <table align="center" id="man" class="matrix">
+      <!--  formation of matrix   -->
+    </table>
+    <br>
+    <br>
+
+    <h4 id="a2"></h4>
+<br>
+
+ </div>

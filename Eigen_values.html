@@ -1,0 +1,170 @@
+---
+layout: default
+title: Eigen values
+---
+
+  <style media="screen">
+
+  </style>
+
+<script type="text/javascript">
+  function func() {
+    var n=document.getElementById('n').value;
+    n=parseInt(n);
+    var str="";
+    document.getElementById('ma').innerHTML="";
+    for(let i=0;i<n;i++)
+    {
+      str=str+"auto ";
+
+    }
+    const dStyle = document.querySelector('style');
+    dStyle.innerHTML = `.grid-container{display:grid;align:center;grid-template-columns: ${str};padding: 5px;width: 10px;}`;
+
+    for(let i=0;i<n*n;i++)
+    {
+      var div = document.createElement('div'); // is a node
+      div.setAttribute('class', 'grid-item');
+
+      div.innerHTML=`<input id="${i}"  type="text" size=1px  value="">`;
+
+  document.getElementById("ma").appendChild(div);
+
+    }
+
+
+  }
+
+
+</script>
+
+
+
+<script type="text/javascript">
+function fun() {
+  document.getElementById('man').innerHTML="";
+  var n=document.getElementById('n').value;
+  n=parseInt(n);
+  let str1=[];
+  for (let i=0;i<n;i++)
+  {
+    let a=[]
+    for(let j=0;j<n;j++)
+    {
+  a.push(parseInt(document.getElementById(`${n*i+j}`).value));
+    }
+   str1.push(a);
+
+  }
+  for (let i=0;i<n;i++)
+  {
+    var tr = document.createElement('tr');
+  var string="";
+    for(let j=0;j<n;j++)
+    {
+      if (i==j){string=string+`<td class="mmm">${str1[i][j]}-λ</td>`;}
+      else{string=string+`<td class="mmm">${str1[i][j]}</td>`;}
+      tr.innerHTML=string;
+    }
+    document.getElementById("mans").appendChild(tr);
+
+  }
+document.getElementById('aa1').innerHTML="Characteristic matrix is ";
+  var res=math.eigs(str1);
+  var pod = res.vectors
+  var val=res.values;
+  for (let i=0;i<n;i++)
+  {
+    var tr = document.createElement('tr');
+  var string="";
+    for(let j=0;j<n;j++)
+    {
+      string=string+`<td class="mmm">${str1[i][j]}</td>`;
+      tr.innerHTML=string;
+
+
+    }
+    document.getElementById("man").appendChild(tr);
+
+  }
+
+
+  
+  var s="";
+  for(let i=1;i<=n;i++)
+  {
+    if(i==n)
+    {
+      s=s+"<br>"+`λ<sub>${i}=</sub>`+val[i-1];
+      break;
+    }
+    s=s+"<br>"+`λ<sub>${i}=</sub>`+val[i-1]+",";
+
+  }
+
+  document.getElementById('a1').innerHTML="Given matrix is: ";
+document.getElementById('a2').innerHTML="The eigen values of Matrix are: "+s;
+
+}
+
+
+</script>
+
+
+
+
+
+
+     <div class="right">
+
+
+  <div class="main-heading">
+
+
+   <h2 style="color:white;" ><strong>Eigenvalues of a Matrices</strong></h2>
+  </div>
+  <div class="paragraph">
+
+
+    <p>
+Eigenvalues are associated with eigenvectors in Linear algebra. Both terms are used in the analysis of linear transformations. Eigenvalues are the special set of scalar values that is associated with the set of linear equations most probably in the matrix equations. The eigenvectors are also termed as characteristic roots. It is a non-zero vector that can be changed at most by its scalar factor after the application of linear transformations. And the corresponding factor which scales the eigenvectors is called an eigenvalue.<p/>
+<p>
+  The basic equation is
+
+  Ax = λx
+
+  The number or scalar value “λ” is an eigenvalue of A.</p>
+
+
+  </div>
+
+  <h1>Enter the order of matrix</h1>
+  <div class="input">
+    <input id="n" type="text" oninput="func()" placeholder="Enter the order of matrix"><!--on changing the input the function is called everytime-->
+
+  </div>
+
+  <div id="ma"  class="grid-container">
+
+
+  </div>
+
+
+  <a class="submit" onclick="fun()"href="#footer" class="btn btn-primary">submit</a>
+
+<div class="paragraph">
+  <br>
+  <br>
+  <h3 id="a1"></h3>
+  <table align="center" id="man" class="matrix">
+
+  </table>
+  <h3 id="aa1"></h3>
+  <table align="center" id="mans" class="matrix">
+
+  </table>
+  <br>
+  <br>
+  <h3 id="a2"></h3>
+
+</div>
