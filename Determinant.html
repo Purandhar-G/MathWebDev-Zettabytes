@@ -1,0 +1,136 @@
+---
+layout: default
+title: Determinant of a Matrix
+---
+
+  <style media="screen">
+
+  </style>
+
+<script type="text/javascript">
+  function func() {
+    var n=document.getElementById('n').value;
+    n=parseInt(n);
+    var str="";
+    document.getElementById('ma').innerHTML="";
+    for(let i=0;i<n;i++)
+    {
+      str=str+"auto ";
+
+    }
+    const dStyle = document.querySelector('style');
+    dStyle.innerHTML = `.grid-container{display:grid;align:center;grid-template-columns: ${str};padding: 5px;width: 10px;}`;
+
+    for(let i=0;i<n*n;i++)
+    {
+      var div = document.createElement('div'); // is a node
+      div.setAttribute('class', 'grid-item');
+
+      div.innerHTML=`<input id="${i}"  type="text" size=1px  value="">`;
+
+  document.getElementById("ma").appendChild(div);
+
+    }
+
+
+  }
+
+
+</script>
+
+
+
+<script type="text/javascript">
+function fun() {
+  document.getElementById('man').innerHTML="";
+  var n=document.getElementById('n').value;
+  n=parseInt(n);
+  let str1=[];
+  for (let i=0;i<n;i++)
+  {
+    let a=[]
+    for(let j=0;j<n;j++)
+    {
+  a.push(parseInt(document.getElementById(`${n*i+j}`).value));
+    }
+   str1.push(a);
+
+  }
+
+  var res=math.det(str1);
+console.log(res);
+  for (let i=0;i<n;i++)
+  {
+    var tr = document.createElement('tr');
+  var string="";
+    for(let j=0;j<n;j++)
+    {
+      string=string+`<td class="mmm">${str1[i][j]}</td>`;
+      tr.innerHTML=string;
+
+
+    }
+    document.getElementById("man").appendChild(tr);
+
+  }
+
+  document.getElementById('a1').innerHTML="Given matrix is: ";
+document.getElementById('a2').innerHTML="Determinant of given Matrix is: |A|= "+res;
+
+}
+
+
+</script>
+
+
+
+
+
+
+     <div class="right">
+
+
+  <div class="main-heading">
+
+
+   <h2 style="color:white;" ><strong>Determinant of a Matrices</strong></h2>
+  </div>
+  <div class="paragraph">
+
+
+    <p>
+      The determinant of a matrix is the scalar value or number calculated using a square matrix. The square matrix could be 2×2, 3×3, 4×4, or any type, such as n × n, where the number of column and rows are equal. If S is the set of square matrices, R is the set of numbers (real or complex) and f : S → R is defined by f (A) = k, where A ∈ S and k ∈ R, then f (A) is called the determinant of A.
+<p/>
+<p>
+Symbol:
+The determinant of a matrix is represented by two vertical lines or simply by writing det and writing the matrix name. eg. |A|, det(A), det A</p>
+Example:
+
+  </div>
+  <img src="determinant.jpeg" alt="">
+  <h3>Enter the order of matrix</h3>
+  <div class="input">
+    <input id="n" type="text" oninput="func()" placeholder="Enter the order of matrix"><!--on changing the input the function is called everytime-->
+
+  </div>
+
+  <div id="ma"  class="grid-container">
+
+
+  </div>
+
+
+  <a class="submit" onclick="fun()"href="#footer" class="btn btn-primary">submit</a>
+
+<div class="paragraph">
+  <br>
+  <br>
+  <h3 id="a1"></h3>
+  <table align="center" id="man" class="matrix">
+
+  </table>
+  <br>
+  <br>
+  <h3 id="a2"></h3>
+
+</div>

@@ -1,0 +1,156 @@
+---
+layout: default
+title: Singular or Non-singular matrix
+---
+  </script>
+
+  <style media="screen">
+
+  </style>
+
+<script type="text/javascript">
+  function func() {
+    var n=document.getElementById('n').value;
+    n=parseInt(n);
+    var str="";
+    document.getElementById('ma').innerHTML="";
+    for(let i=0;i<n;i++)
+    {
+      str=str+"auto ";
+
+    }
+    const dStyle = document.querySelector('style');
+    dStyle.innerHTML = `.grid-container{display:grid;align:center;grid-template-columns: ${str};padding: 5px;width: 10px;}`;
+
+    for(let i=0;i<n*n;i++)
+    {
+      var div = document.createElement('div'); // is a node
+      div.setAttribute('class', 'grid-item');
+
+      div.innerHTML=`<input id="${i}"  type="text" size=1px  value="">`;
+
+  document.getElementById("ma").appendChild(div);
+
+    }
+
+
+  }
+
+
+</script>
+
+
+
+<script type="text/javascript">
+function fun() {
+  document.getElementById('man').innerHTML="";
+  var n=document.getElementById('n').value;
+  n=parseInt(n);
+  let str1=[];
+  for (let i=0;i<n;i++)
+  {
+    let a=[]
+    for(let j=0;j<n;j++)
+    {
+  a.push(parseInt(document.getElementById(`${n*i+j}`).value));
+    }
+   str1.push(a);
+
+  }
+
+  var res=math.transpose(str1);
+console.log(res);
+  for (let i=0;i<n;i++)
+  {
+    var tr = document.createElement('tr');
+  var string="";
+    for(let j=0;j<n;j++)
+    {
+      string=string+`<td class="mmm">${res[i][j]}</td>`;
+      tr.innerHTML=string;
+
+
+    }
+    document.getElementById("man").appendChild(tr);
+
+  }
+document.getElementById('a1').innerHTML="Transpose of given Matrix is: ";
+
+
+let count=0;
+for(let i=0;i<n;i++)
+{
+  for(let j=0;j<n;j++)
+  {
+  if ( str1[i][j]==res[i][j] )
+  {
+    count=count+1;
+  }
+
+  }
+}
+console.log(count);
+var res="";
+if (count==n*n)
+{
+  res=res+"Matrix is symmertrical <br><br> because givenMatrix[i][j]  and transposeMatrix[i][j] both are equal for all i,j";
+}
+else{
+  res=res+"Matrix is non-symmertrical <br><br> because givenMatrix[i][j]  and transposeMatrix[i][j] both are not equal for all i,j";
+}
+document.getElementById('a2').innerHTML=res;
+}
+</script>
+     <div class="right">
+
+
+  <div class="main-heading">
+
+
+   <h2 style="color:white;" ><strong>Symmetric Matrix</strong></h2>
+  </div>
+  <br>
+  <div class="paragraph">
+  In linear algebra, a symmetric matrix is defined as the square matrix that is equal to its transpose matrix. <br>
+  The transpose matrix of any given matrix A can be given as A<sup>T</sup>.<br>
+  A symmetric matrix A therefore satisfies the condition, A = A<sup>T</sup>. <br>
+  Among all the different kinds of matrices, symmetric matrices are one of the most important ones that are used widely in machine learning.
+
+
+
+  </div>
+  <img src="https://th.bing.com/th/id/R.ef073752d8bd131498bc95d5371ee3c9?rik=3VgeGkwQ94hy%2fQ&riu=http%3a%2f%2fcodeforwin.org%2fwp-content%2fuploads%2f2015%2f08%2fSymmetric-matrix.png&ehk=xwQ1jqVaBPb3PObjnwN9oxrpZtKGvIHMNjT9JBTSPrE%3d&risl=&pid=ImgRaw&r=0" alt="">
+<h1>Enter the order of matrix</h1>
+<div class="input">
+  <input id="n" type="text" oninput="func()" placeholder="Enter the order of matrix"><!--on changing the input the function is called everytime-->
+
+</div>
+
+
+<div id="ma"  class="grid-container">
+
+
+</div>
+
+
+
+
+<a class="submit"onclick="fun()"href="#footer" class="btn btn-light">submit</a>
+
+<br><br>
+<h4>OUTPUT SECTION:</h4>
+
+<div class="paragraph">
+  <br>
+  <h4 id="a1"></h4>
+  <br>
+  <br>
+
+  <table align="center" id="man" class="matrix">
+
+  </table>
+  <br>
+  <br>
+  <h5 id="a2"></h5>
+<br><br>
+</div>

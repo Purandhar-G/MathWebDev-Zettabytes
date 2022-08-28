@@ -1,0 +1,258 @@
+---
+layout: default
+title: RANK OF MATRIX
+---
+
+  <style media="screen">
+
+  </style>
+
+<script type="text/javascript">
+  function func() {
+    var n=document.getElementById('n').value;
+    n=parseInt(n);
+    var str="";
+    document.getElementById('ma').innerHTML="";
+    for(let i=0;i<n;i++)
+    {
+      str=str+"auto ";
+
+    }
+    const dStyle = document.querySelector('style');
+    dStyle.innerHTML = `.grid-container{display:grid;align:center;grid-template-columns: ${str};padding: 5px;width: 10px;}`;
+
+    for(let i=0;i<n*n;i++)
+    {
+      var div = document.createElement('div'); // is a node
+      div.setAttribute('class', 'grid-item');
+
+      div.innerHTML=`<input id="${i}"  type="text" size=1px  value="">`;
+
+  document.getElementById("ma").appendChild(div);
+
+    }
+
+
+  }
+
+
+</script>
+
+
+
+<script type="text/javascript">
+function fun() {
+  document.getElementById('man').innerHTML="";
+  var n=document.getElementById('n').value;
+  n=parseInt(n);
+  let str1=[];
+  for (let i=0;i<n;i++)
+  {
+    let a=[]
+    for(let j=0;j<n;j++)
+    {
+  a.push(parseInt(document.getElementById(`${n*i+j}`).value));
+    }
+   str1.push(a);
+
+  }
+
+  var R = n;
+  var C = n;
+
+// function for exchanging two rows
+// of a matrix
+function swap(mat, row1 , row2 , col)
+{
+    for (i = 0; i < col; i++)
+    {
+        var temp = mat[row1][i];
+        mat[row1][i] = mat[row2][i];
+        mat[row2][i] = temp;
+    }
+}
+
+// Function to display a matrix
+function display(mat,row , col)
+{
+    for (i = 0; i < row; i++)
+    {
+
+        for (j = 0; j < col; j++)
+
+            document.write(" "
+                      + mat[i][j]);
+
+        document.write('<br>');
+    }
+}
+
+// function for finding rank of matrix
+function rankOfMatrix(mat)
+{
+
+    var rank = C;
+
+    for (row = 0; row < rank; row++)
+    {
+
+        // Before we visit current row
+        // 'row', we make sure that
+        // mat[row][0],....mat[row][row-1]
+        // are 0.
+
+        // Diagonal element is not zero
+        if (mat[row][row] != 0)
+        {
+            for (col = 0; col < R; col++)
+            {
+                if (col != row)
+                {
+                    // This makes all entries
+                    // of current column
+                    // as 0 except entry
+                    // 'mat[row][row]'
+                    var mult =
+                       mat[col][row] /
+                                mat[row][row];
+
+                    for (i = 0; i < rank; i++)
+
+                        mat[col][i] -= mult
+                                   * mat[row][i];
+                }
+            }
+        }
+
+        // Diagonal element is already zero.
+        // Two cases arise:
+        // 1) If there is a row below it
+        // with non-zero entry, then swap
+        // this row with that row and process
+        // that row
+        // 2) If all elements in current
+        // column below mat[r][row] are 0,
+        // then remove this column by
+        // swapping it with last column and
+        // reducing number of columns by 1.
+        else
+        {
+            reduce = true;
+
+            // Find the non-zero element
+            // in current column
+            for (var i = row + 1; i < R; i++)
+            {
+                // Swap the row with non-zero
+                // element with this row.
+                if (mat[i][row] != 0)
+                {
+                    swap(mat, row, i, rank);
+                    reduce = false;
+                    break ;
+                }
+            }
+
+            // If we did not find any row with
+            // non-zero element in current
+            // column, then all values in
+            // this column are 0.
+            if (reduce)
+            {
+                // Reduce number of columns
+                rank--;
+
+                // Copy the last column here
+                for (i = 0; i < R; i ++)
+                    mat[i][row] = mat[i][rank];
+            }
+
+
+            row--;
+        }
+
+
+    }
+
+    return rank;
+}
+
+  for (let i=0;i<n;i++)
+  {
+    var tr = document.createElement('tr');
+  var string="";
+    for(let j=0;j<n;j++)
+    {
+      string=string+`<td class="mmm">${str1[i][j]}</td>`;
+      tr.innerHTML=string;
+
+
+    }
+    document.getElementById("man").appendChild(tr);
+
+  }
+
+  document.getElementById('a1').innerHTML="Given matrix is: ";
+document.getElementById('rank').innerHTML = "The Rank of the matrix is : "+rankOfMatrix(str1);
+}
+
+
+</script>
+
+
+
+
+
+
+     <div class="right">
+
+
+  <div class="main-heading">
+
+
+   <h2 style="color:white;" ><strong>Rank of a Matrices</strong></h2>
+  </div>
+  <div class="paragraph">
+
+
+    <p>
+      The maximum number of its linearly independent columns (or rows ) of a matrix is called the rank of a matrix. The rank of a matrix cannot exceed the number of its rows or columns.
+
+If we consider a square matrix, the columns (rows) are linearly independent only if the matrix is nonsingular. In other words, the rank of any nonsingular matrix of order m is m. Rank of a matrix A is denoted by ρ(A).
+
+The rank of a null matrix is zero. A null matrix has no non-zero rows or columns. So, there are no independent rows or columns. Hence the rank of a null matrix is zero.
+<p/>
+<p>
+Symbol:
+The Rank of a matrix is represented by  ρ( A ) or Rank(A).If A is of order n×n and |A| ≠ 0, then the rank of A = n.
+
+If A is of order n×n and |A| = 0, then the rank of A will be less than n.</p>
+Example:
+
+  </div>
+  <h4>Enter the order of matrix</h4>
+  <div class="input">
+    <input id="n" type="text" oninput="func()" placeholder="Enter the order of matrix"><!--on changing the input the function is called everytime-->
+
+  </div>
+
+  <div id="ma"  class="grid-container">
+
+
+  </div>
+
+
+  <a class="submit" onclick="fun()"href="#footer" class="btn btn-primary">submit</a>
+
+<div class="paragraph">
+  <br>
+  <br>
+  <h3 id="a1"></h3>
+  <table align="center" id="man" class="matrix">
+
+  </table>
+  <br>
+  <br>
+  <h3 id="rank"></h3>
+
+</div>

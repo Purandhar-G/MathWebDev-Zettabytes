@@ -1,0 +1,251 @@
+---
+layout: default
+title: Addition of two matrices
+---
+
+<style media="screen">
+
+</style>
+
+
+<!--java script code for creating interactive grids-->
+<script type="text/javascript">
+  function func() {
+
+    var n=document.getElementById('n').value;
+    n=parseInt(n);
+    var str=""; //defining the string str  to set auto for grid container according to the order of matrix
+    document.getElementById("matrix1").innerHTML="";
+    for(let i=0;i<n;i++)
+    {
+      str=str+"auto ";
+
+    }
+    const dStyle = document.querySelector('style');//changing the contents of style tag to chnage the css of grid that is for input matrix1
+    dStyle.innerHTML = `.grid-container{display:grid;align:center;grid-template-columns: ${str};padding: 5px;width: 10px;}`;
+
+    for(let i=0;i<n*n;i++)
+    {
+      var div = document.createElement('div'); // creating a new  tag
+      div.setAttribute('class', 'grid-item');//setting the div attribute to grid item
+
+      div.innerHTML=`<input id="${i}"  type="text" size=1px  value="">`;//creating a new input tag inside div item to take input values inside the grid
+
+  document.getElementById("matrix1").appendChild(div);//appending the div to grid cntainer
+  document.getElementById("y").innerHTML="Enter the First Matrix A" ;
+
+document.getElementById("yy").innerHTML="Enter the Second Matrix B";
+
+
+    }
+
+    document.getElementById("matrix2").innerHTML="";
+    for(let i=0;i<n*n;i++)
+    {
+      var div = document.createElement('div'); // is a node
+      div.setAttribute('class', 'grid-item');
+
+      div.innerHTML=`<input id="${1000+i}"  type="text" size=1px  value="">`;//creating a new input tag inside div item to take input values inside the grid
+
+  document.getElementById("matrix2").appendChild(div);//appending the div to grid cntainer
+
+
+
+
+    }
+
+
+
+  }
+
+
+</script>
+
+
+
+<script type="text/javascript">
+//java script code for taking the input from grids and applying logic.
+function fun() {
+  document.getElementById("add").innerHTML="";
+    document.getElementById("mul").innerHTML="";
+    document.getElementById("mat1").innerHTML="";
+      document.getElementById("mat2").innerHTML="";
+  var n=document.getElementById('n').value;
+  n=parseInt(n);
+  let str1=[];
+
+  //below two for loops gets the value from input grids and stores in str1 and str2
+  for (let i=0;i<n;i++)
+  {
+    let a=[]
+    for(let j=0;j<n;j++)
+    {
+  a.push(parseInt(document.getElementById(`${n*i+j}`).value));
+    }
+   str1.push(a);
+
+  }
+
+  let str2=[];
+  for (let i=0;i<n;i++)
+  {
+    let a=[]
+    for(let j=0;j<n;j++)
+    {
+  a.push(parseInt(document.getElementById(`${n*i+j+1000}`).value));
+    }
+   str2.push(a);
+
+  }
+
+
+document.getElementById('show_matrix1').innerHTML="<span style='margin-left:10em;color:black;font-style: bold'>"+"First matrix A=";
+document.getElementById('show_matrix2').innerHTML="<span style='margin-left:10em;color:black;font-style: bold'>"+"Second matrix B=";
+//now creating four matrix type  table formats for matrix1,matrix2,add and mul matrices to display in output
+for (let i=0;i<n;i++)
+{
+  var tr = document.createElement('tr');
+var string="";
+  for(let j=0;j<n;j++)
+  {
+    string=string+`<td class="mmm">${str1[i][j]}</td>`;
+
+
+
+  }
+    tr.innerHTML=string;
+  document.getElementById("mat1").appendChild(tr);
+
+}
+for (let i=0;i<n;i++)
+{
+  var tr = document.createElement('tr');
+var string="";
+  for(let j=0;j<n;j++)
+  {
+    string=string+`<td class="mmm">${str2[i][j]}</td>`;
+
+
+
+  }
+    tr.innerHTML=string;
+  document.getElementById("mat2").appendChild(tr);
+
+}
+
+
+var res_add=math.add(str1,str2);//using math.add for adding two matrices.
+
+  for (let i=0;i<n;i++)
+  {
+    var tr = document.createElement('tr');
+  var string="";
+    for(let j=0;j<n;j++)
+    {
+      string=string+`<td class="mmm">${res_add[i][j]}</td>`;
+
+
+
+    }
+      tr.innerHTML=string;
+    document.getElementById("add").appendChild(tr);
+
+  }
+
+
+
+  document.getElementById("yyy").innerHTML="<span style='margin-left:5em;color:black;font-style': bold>Addition of two matrices A+B=</span>";
+
+
+
+
+}
+
+
+</script>
+
+
+
+
+     <div class="right">
+
+  <div class="main-heading">
+
+
+   <h2 style="color:white;" ><strong>Addition of two Matrices</strong></h2>
+  </div>
+  <div class="paragraph">
+
+
+    <p>
+      Two matrices A and B are said to be conformable for addition if they have the same order (i.e., same number of rows and columns).  </p>
+
+    If A  = [aij] of order m x n and B = [bij] of order m x n then their sum A + B is the matrix C = [cij] of order m x n where cij = aij + bij,
+    <p>i = 1, 2, 3, ...... , m,
+     j = 1, 2, 3, ...., n.</p>
+
+
+  <h5>Note: If A and B be matrices of different orders, then A + B is not defined.</h5>
+  For Example:
+
+  </div>
+  <br>
+  <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/0fb7845af355c550d44020e52699069c044126a9" alt="">
+
+
+
+<br><br>
+
+<h3>Enter the Order of Matrix</h3>
+<br>
+<div class="input">
+  <input id="n" type="text" oninput="func()" placeholder="Enter the order of matrix"><!--on changing the input the function is called everytime-->
+
+</div>
+<h3 id="y"></h3>
+<div id="matrix1"  class="grid-container">
+</div>
+<h3 id="yy"></h3>
+<div id="matrix2"  class="grid-container">
+</div>
+<a onclick="fun()" href="#footer" class="submit">Submit</a>
+<br>
+<br>
+<h3>OUTPUT SECTION :</h3>
+<div class="paragraph">
+  <br>
+  <br>
+  <h3 id="show_matrix1"></h3>
+  <!--for  matrix 1-->
+  <br>
+  <table align="center" id="mat1" class="matrix">
+
+  </table>
+  <br>
+  <h3 id="show_matrix2"></h3>
+  <!--for  matrix 2-->
+  <br><br>
+  <table align="center" id="mat2" class="matrix">
+
+  </table>
+<br>
+<br>
+  <h3 id="yyy"></h3>
+
+  <!--for additon matrix-->
+  <br><br>
+  <table align="center" id="add" class="matrix">
+
+  </table>
+  <br>
+  <br>
+  <h3 id="yyyy"></h3>
+
+  <!--for multiplication matrix-->
+<br>
+<br>
+  <table align="center" id="mul" class="matrix">
+
+  </table>
+
+</div>

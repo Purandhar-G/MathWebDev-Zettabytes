@@ -1,0 +1,140 @@
+---
+layout: default
+title: Singular or Non-singular matrix
+---
+  <style media="screen">
+
+  </style>
+
+<script type="text/javascript">
+  function func() {
+    var n=document.getElementById('n').value;
+    n=parseInt(n);
+    var str="";
+    document.getElementById('ma').innerHTML="";
+    for(let i=0;i<n;i++)
+    {
+      str=str+"auto ";
+
+    }
+    const dStyle = document.querySelector('style');
+    dStyle.innerHTML = `.grid-container{display:grid;align:center;grid-template-columns: ${str};padding: 5px;width: 10px;}`;
+
+    for(let i=0;i<n*n;i++)
+    {
+      var div = document.createElement('div'); // is a node
+      div.setAttribute('class', 'grid-item');
+
+      div.innerHTML=`<input id="${i}"  type="text" size=1px  value="">`;
+
+  document.getElementById("ma").appendChild(div);
+
+    }
+
+
+  }
+
+
+</script>
+
+
+
+<script type="text/javascript">
+function fun() {
+  document.getElementById('man').innerHTML="";
+  var n=document.getElementById('n').value;
+  n=parseInt(n);
+  let str1=[];
+  for (let i=0;i<n;i++)
+  {
+    let a=[]
+    for(let j=0;j<n;j++)
+    {
+  a.push(parseInt(document.getElementById(`${n*i+j}`).value));
+    }
+   str1.push(a);
+
+  }
+
+  var res=math.det(str1);
+console.log(res);
+  for (let i=0;i<n;i++)
+  {
+    var tr = document.createElement('tr');
+  var string="";
+    for(let j=0;j<n;j++)
+    {
+      string=string+`<td class="mmm">${str1[i][j]}</td>`;
+      tr.innerHTML=string;
+
+
+    }
+    document.getElementById("man").appendChild(tr);
+
+  }
+
+  var str="";
+  if(res==0)
+  {
+    str=str+" and it is a singular matrix";
+  }
+  else {
+    str=str+" and it is a non-singular matrix";
+
+  }
+
+  document.getElementById('a1').innerHTML="Given matrix is: ";
+document.getElementById('a2').innerHTML="Determinant of given Matrix is "+res+str;
+
+}
+
+
+</script>
+
+
+
+     <div class="right">
+
+  <div class="main-heading">
+
+
+   <h2 style="color:white;" ><strong>Singular or Non-singular Matrix</strong></h2>
+  </div>
+  <div class="paragraph">
+To find a matrix is whether Singular or Non-Singular first we need to find it's Determinant value. <br>
+If the value of determinant is Zero then it is a Singular Matrix. <br>
+If the value of determinant is Non-Zero then it is a Non-Singular Matrix.
+
+  </div>
+<img src="determinant.jpeg" alt="">
+
+  <h3>Enter the order of matrix</h3>
+  <div class="input">
+    <input  id="n" type="text" oninput="func()"name="" value="">
+
+
+  </div>
+
+  <div id="ma"  class="grid-container">
+
+
+  </div>
+
+
+  <a class="submit" onclick="fun()"href="#footer" class="btn btn-primary">submit</a>
+  <br><br>
+  <br>
+  <h4>OUTPUT SECTION:</h4>
+
+  <div class="paragraph">
+    <br>
+    <h3 id="a1"></h3>
+    <table align="center" id="man" class="matrix">
+
+    </table>
+    <br>
+    <br>
+    <h5 id="a2"></h5>
+    <br>
+
+  </div>

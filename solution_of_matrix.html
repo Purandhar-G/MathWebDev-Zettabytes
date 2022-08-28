@@ -1,0 +1,278 @@
+---
+layout: default
+title: Type of Solutions
+---
+
+  <style media="screen">
+
+  </style>
+
+  <script type="text/javascript">
+    // javascript program to find rank of a matrix
+    function functionName() {
+    x1=document.getElementById('1').value;x1=parseInt(x1);
+    y1=document.getElementById('2').value;y1=parseInt(y1);
+    z1=document.getElementById('3').value;z1=parseInt(z1);
+    c1=document.getElementById('4').value;c1=parseInt(c1);
+    x2=document.getElementById('5').value;x2=parseInt(x2);
+    y2=document.getElementById('6').value;y2=parseInt(y2);
+    z2=document.getElementById('7').value;z2=parseInt(z2);
+    c2=document.getElementById('8').value;c2=parseInt(c2);
+    x3=document.getElementById('9').value;x3=parseInt(x3);
+    y3=document.getElementById('10').value;y3=parseInt(y3);
+    z3=document.getElementById('11').value;z3=parseInt(z3);
+    c3=document.getElementById('12').value;c3=parseInt(c3);
+
+
+    document.getElementById('zzz').innerHTML = "The given equations are <br><br>"+x1+"*X+"+y1+"*Y+"+z1+"*Z="+c1+"<br><br>"+x2+"*X+"+y2+"*Y+"+z2+"*Z="+c2+"<br><br>"+x3+"X+"+y3+"*Y+"+z3+"*Z="+c3+"<br><br>";
+    var R = 3;
+    var C = 3;
+
+  // function for exchanging two rows
+  // of a matrix
+  function swap(mat, row1 , row2 , col)
+  {
+      for (i = 0; i < col; i++)
+      {
+          var temp = mat[row1][i];
+          mat[row1][i] = mat[row2][i];
+          mat[row2][i] = temp;
+      }
+  }
+
+  // Function to display a matrix
+  function display(mat,row , col)
+  {
+      for (i = 0; i < row; i++)
+      {
+
+          for (j = 0; j < col; j++)
+
+              document.write(" "
+                        + mat[i][j]);
+
+          document.write('<br>');
+      }
+  }
+
+  // function for finding rank of matrix
+  function rankOfMatrix(mat)
+  {
+
+      var rank = C;
+
+      for (row = 0; row < rank; row++)
+      {
+
+          // Before we visit current row
+          // 'row', we make sure that
+          // mat[row][0],....mat[row][row-1]
+          // are 0.
+
+          // Diagonal element is not zero
+          if (mat[row][row] != 0)
+          {
+              for (col = 0; col < R; col++)
+              {
+                  if (col != row)
+                  {
+                      // This makes all entries
+                      // of current column
+                      // as 0 except entry
+                      // 'mat[row][row]'
+                      var mult =
+                         mat[col][row] /
+                                  mat[row][row];
+
+                      for (i = 0; i < rank; i++)
+
+                          mat[col][i] -= mult
+                                     * mat[row][i];
+                  }
+              }
+          }
+
+          // Diagonal element is already zero.
+          // Two cases arise:
+          // 1) If there is a row below it
+          // with non-zero entry, then swap
+          // this row with that row and process
+          // that row
+          // 2) If all elements in current
+          // column below mat[r][row] are 0,
+          // then remove this column by
+          // swapping it with last column and
+          // reducing number of columns by 1.
+          else
+          {
+              reduce = true;
+
+              // Find the non-zero element
+              // in current column
+              for (var i = row + 1; i < R; i++)
+              {
+                  // Swap the row with non-zero
+                  // element with this row.
+                  if (mat[i][row] != 0)
+                  {
+                      swap(mat, row, i, rank);
+                      reduce = false;
+                      break ;
+                  }
+              }
+
+              // If we did not find any row with
+              // non-zero element in current
+              // column, then all values in
+              // this column are 0.
+              if (reduce)
+              {
+                  // Reduce number of columns
+                  rank--;
+
+                  // Copy the last column here
+                  for (i = 0; i < R; i ++)
+                      mat[i][row] = mat[i][rank];
+              }
+
+
+              row--;
+          }
+
+
+      }
+
+      return rank;
+  }
+
+
+  var mat1 =[[x1,y1,z1],[x2,y2,z2],[x3,y3,z3]];
+  var mat2 = [[y1,z1,c1],[y2,z2,c2],[y3,z3,c3]];
+  str1 = [[x1,y1,z1,c1],[x2,y2,z2,c2],[x3,y3,z3,c3]];
+  for (let i=0;i<3;i++)
+  {
+  var tr = document.createElement('tr');
+  var string="";
+  for(let j=0;j<4;j++)
+  {
+  string=string+`<td class="mmm">${str1[i][j]}</td>`;
+  tr.innerHTML=string;
+  }
+  document.getElementById("man").appendChild(tr);
+
+  }
+  document.getElementById('a1').innerHTML="The augmented matrix is: ";
+
+
+  if (rankOfMatrix(mat1) == rankOfMatrix(mat2) & rankOfMatrix(mat1) == 3)
+  {
+  document.getElementById('r3').innerHTML = "THE GIVEN EQUATION IS CONSISTENT AND HAVING UNIQUE SOLUTION";
+  }
+  else if (rankOfMatrix(mat1) == rankOfMatrix(mat2) & rankOfMatrix(mat1) < 3) {
+  document.getElementById('r3').innerHTML = "THE GIVEN EQUATION IS CONSISTENT AND HAVING INFINITE SOLUTIONS";
+
+  }
+  else if (rankOfMatrix(mat1) != rankOfMatrix(mat2)) {
+  document.getElementById('r3').innerHTML = "THE GIVEN EQUATION IS INCONSISTENT AND HAVING NO SOLUTION";
+
+  }
+  }
+  </script>
+
+
+
+
+
+
+     <div class="right">
+
+
+  <div class="main-heading">
+
+
+   <h2 style="color:white;" ><strong>Type of Solution</strong></h2>
+  </div>
+  <div class="paragraph">
+<!--        introdution                :  -->
+
+    <p>
+      There can be a single solution, an infinite number of solutions, or no solution to a system of two linear equations. The number of solutions in a system of equations can be used to differentiate it.
+
+      A system is said to be <<b>consistent</b> if it has a minimum of one solution.
+
+      It is independent if a consistent system has only one solution.<p/>
+
+  <p> <b>Inconsistent</b> equations of linear equations are equations that have no solutions in common. In this system, the lines will be parallel if the equations are graphed on a coordinate plane.</p>
+<p><b>Difference Between Consistent and Inconsistent Systems</b>
+A linear or nonlinear system of equations is considered to be consistent in mathematics and especially algebra if at least one set of values for the unknowns satisfies each equation in the system—that is, when substituted into every equation, they make each equation turn true as an identity. The term inconsistent is utilized to delineate a linear or nonlinear equation system in which no set of values for the unknown fulfills all of the equations.</p>
+Example:
+<p>Case 1 :
+If there are n unknowns in the system of equations and
+
+ρ(A)  =  ρ([A|B])  =  n
+then the system AX = B, is consistent and has a unique solution.
+
+</p>
+<p>Case 2 :
+If there are n unknowns in the system AX = B ρ(A)  =  ρ([A| B]) < N .Then the system is consistent and has infinitely many solutions and these solutions.
+</p>
+<p>
+Case 3 :
+If ρ(A)  ≠  ρ([A| B])
+then the system AX = B is inconsistent and has no solution.
+</p>
+  </div>
+
+
+  <!-- STARTING   -->
+  <h1>Enter the coefficients of the three equations</h1>
+  <div class="input">
+  <!-- :    <input id="n" type="text" oninput="func()" placeholder="Enter the order of matrix"><!--on changing the input the function is called everytime-->
+  <h4>enter the first equation</h4>
+  <input type="text" id="1" size="1" >X+
+  <input type="text" id="2" size="1" >Y+
+  <input type="text" id="3" size="1" >Z=
+  <input type="text" id="4" size="1" >
+  <br>
+  <h4>enter the second equation</h4>
+  <input type="text" id="5" size="1" >X+
+  <input type="text" id="6" size="1" >Y+
+  <input type="text" id="7" size="1" >Z=
+  <input type="text" id="8" size="1" >
+  <br>
+  <h4>enter the third equation</h4>
+  <input type="text" id="9" size="1" >X+
+  <input type="text" id="10" size="1">Y+
+  <input type="text" id="11" size="1" >Z=
+  <input type="text" id="12" size="1" >
+  <br>
+  </div>
+
+  <div id="ma"  class="grid-container">
+
+
+  </div>
+
+
+  <a class="submit" onclick="functionName()"href="#footer" class="btn btn-primary">submit</a>
+
+<div class="paragraph">
+                                    <!-- OUTPUT  -->
+  <br>
+  <br>
+  <h4 id='zzz'></h4>
+  <h3 id="a1"></h3>
+  <br>
+  <table align="center" id="man" class="matrix">
+
+  </table>
+  <br>
+  <h3 id="id"></h3>
+  <br>
+  <h4 id="r3"></h4>
+  <br>
+  <br>
+  <h3 id="a2"></h3>
+  <br>
+
+</div>

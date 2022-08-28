@@ -1,0 +1,178 @@
+---
+layout: default
+title: Orthogonal Matrix
+---
+
+    <style media="screen">
+
+    </style>
+
+    <script type="text/javascript">
+      function func() {
+        var n=document.getElementById('n').value;
+        n=parseInt(n);
+        var str="";
+        document.getElementById('ma').innerHTML="";
+        for(let i=0;i<n;i++)
+        {
+          str=str+"auto ";
+
+        }
+        const dStyle = document.querySelector('style');
+        dStyle.innerHTML = `.grid-container{display:grid;align:center;grid-template-columns: ${str};padding: 5px;width: 10px;}`;
+
+        for(let i=0;i<n*n;i++)
+        {
+          var div = document.createElement('div'); // is a node
+          div.setAttribute('class', 'grid-item');
+
+          div.innerHTML=`<input id="${i}"  type="text" size=1px  value="">`;
+
+      document.getElementById("ma").appendChild(div);
+
+        }
+
+
+      }
+
+
+    </script>
+
+    <script type="text/javascript">
+    function fun() {
+      document.getElementById('man').innerHTML="";
+      var n=document.getElementById('n').value;
+      n=parseInt(n);
+      let str1=[];
+
+
+      for (let i=0;i<n;i++)
+      {
+        let a=[]
+        for(let j=0;j<n;j++)
+        {
+      a.push(parseInt(document.getElementById(`${n*i+j}`).value));
+        }
+       str1.push(a);
+
+      }
+
+      var tran=math.transpose(str1);
+      var inv=math.inv(str1);
+    console.log(tran);
+      for (let i=0;i<n;i++)
+      {
+        var tr = document.createElement('tr');
+      var string="";
+        for(let j=0;j<n;j++)
+        {
+          string=string+`<td class="mmm">${tran[i][j]}</td>`;
+          tr.innerHTML=string;
+
+
+        }
+        document.getElementById("man").appendChild(tr);
+
+      }
+
+    for (let i=0;i<n;i++)
+      {
+        var tr = document.createElement('tr');
+      var string="";
+        for(let j=0;j<n;j++)
+        {
+          string=string+`<td class="mmm">${inv[i][j].toFixed(2)}</td>`;
+          tr.innerHTML=string;
+
+
+        }
+        document.getElementById("man1").appendChild(tr);
+
+      }
+
+      let count=0;
+      for(let i=0;i<n;i++)
+      {
+        for(let j=0;j<n;j++)
+        {
+        if (tran[i][j]==inv[i][j])
+        {
+          count=count+1;
+        }
+
+        }
+      }
+      console.log(count);
+      var res="";
+      if (count==n*n)
+      {
+        res=res+"Matrix is orthogonal"+"<br>"+"because all the elements in transpose matrix and inverse matrix are same";
+      }
+      else{
+        res=res+"Matrix is not orthogonal"+"<br>"+"because all the elements in transpose matrix and inverse matrix are not same";
+      }
+      document.getElementById('a1').innerHTML="Transpose of given matrix is:";
+      document.getElementById('a2').innerHTML="Inverse  of given matrix is:";
+      document.getElementById('a3').innerHTML=res;
+
+
+
+    }
+
+
+    </script>
+
+
+
+
+       <div class="right">
+
+    <h4 style="text-decoration-line: underline;">
+      <strong>Orthogonal of a Matrix</strong></h4>
+      <p>The matrix is said to be an orthogonal matrix if the product of a matrix and its transpose gives an identity value.<br>
+        Suppose A is a square matrix with real elements and of n x n order and AT is the transpose of A. Then according to the definition, if, AT = A-1 is satisfied, then,<br>
+<img src="https://www.algebrapracticeproblems.com/wp-content/ql-cache/quicklatex.com-b89aba63aab9a788f2e750d66c93316c_l3.svg" alt="">
+<br>
+
+Where ‘I’ is the identity matrix, A-1 is the inverse of matrix A, and ‘n’ denotes the number of rows and columns.<br>
+Note:<br>
+
+All the orthogonal matrices are invertible. Since the transpose holds back the determinant, therefore we can say, the determinant of an orthogonal matrix is always equal to the -1 or +1.<br>
+All orthogonal matrices are square matrices but not all square matrices are orthogonal.
+      </p>
+      <h1>Enter the order of matrix</h1>
+      <div class="input">
+        <input  id="n" type="text" oninput="func()">
+      </div>
+
+
+      <div id="ma"  class="grid-container">
+
+
+      </div>
+
+
+      <a class="submit" onclick="fun()"href="#footer" class="btn btn-primary">submit</a>
+      <br>
+      <br>
+      <h4>OUPUT SECTION:</h4>
+  <div class="paragraph">
+
+    <br>
+    <h4 id="a1"></h4>
+    <br>
+    <table align="center" id="man" class="matrix">
+
+    </table>
+    <br>
+    <h4 id="a2"></h4>
+    <br>
+    <table align="center" id="man1" class="matrix">
+
+    </table>
+    <br>
+    <h4 id="a3"></h4>
+    <br>
+
+
+  </div>

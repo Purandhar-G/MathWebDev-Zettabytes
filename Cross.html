@@ -1,0 +1,109 @@
+---
+layout: default
+title: Cross product of two vectors
+---
+<script src="all.min.js"></script>  <!-- assuming you've saved the file in the root -->
+<script type="text/javascript">
+  function func(){
+
+var place1=document.getElementById('1').value;
+var place2=document.getElementById('2').value;
+nerdamer.setVar('v1', `vector(${place1})`);
+x = nerdamer('v1');
+//console.log(x.toString())
+nerdamer.setVar('v2', `vector(${place2})`);
+y = nerdamer('v2');
+//console.log(y.toString());
+// var x = nerdamer('dot([1,2,3], [4,5,6])').evaluate();
+// console.log(x.toString());
+var a = nerdamer(`cross(${x.toString()}, ${y.toString()})`).evaluate();
+console.log(a.toString());
+
+
+
+
+
+
+
+document.getElementById("a").innerHTML="Coefficiets that you entered for vector 1: "+place1+"<br>";
+document.getElementById("b").innerHTML="Coefficiets that you entered for vector 2: "+place2+"<br>";
+document.getElementById("c").innerHTML= "After cross product we get [i,j,k] as coefficients of cross product"+"<br>";
+document.getElementById("d").innerHTML= "A x B :"+a.toString();
+
+
+
+  }
+
+
+
+
+</script>
+
+
+
+
+       <div class="right">
+
+<div class="main-heading">
+
+
+ <h2 ><strong>Cross Product of Vectors</strong></h2>
+</div>
+<div class="paragraph">
+
+
+    <p> Cross product is a binary operation on two vectors in three-dimensional space.</p>
+  <p>  Cross product is also known as Vector product.</p>
+    <p>  It results a vector that is perpendicular to both the vectors choosen.</p>
+      <p>  The Vector product of two vectors, a and b, is denoted by a × b.</p>
+
+</div>
+<div class="paragraph-2">
+
+
+            <p >The following is the demonstration of two vectors and their cross product.</p>
+</div>
+
+
+
+  <img src="https://www.onlinemath4all.com/images/vectorproductoftwovectors.png" alt="">
+<div class="paragraph-3">
+
+
+  <p >Now, Let's jump in to have fun with, <strong>Practically trying them...</strong></p>
+</div>
+          <h5 style="font-weight:bold">Enter the i,j,k coefficients of vector 1 </h5>
+          <br>
+<div class="input">
+
+
+    <input id="1"  placeholder="enter the coefficiets i,j,k" >
+</div>
+          <br>
+            <h5 style="font-weight:bold">Enter the i,j,k coefficients of vector 2 </h5>
+            <br>
+
+
+
+
+<div class="input-2">
+  <input id="2"  placeholder="enter the coefficiets i,j,k">
+</div>
+              <br>
+   <br>
+              <a onclick="func()" href="#footer" class="submit">Submit</a>
+
+<br><br>
+<h4>OUTPUT SECTION:</h4>
+<div class="paragraph">
+  <h5 id="a"></h5>
+  <br>
+  <h5 id="b"></h5><br>
+  <h5 id="c"></h5><br>
+  <h5 id="d"></h5><br>
+<br>
+</div>
+
+
+ </div>
+    </div>
